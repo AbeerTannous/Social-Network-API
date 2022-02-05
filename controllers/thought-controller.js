@@ -94,26 +94,16 @@ updateThpught({ params, body }, res) {
       { $push: { reactions: body } },
       { new: true }
     )
-      .then(dbuserData => {
-        if (!dbuserData) {
-          res.status(404).json({ message: 'No user found with this id!' });
+      .then(dbthoughtData => {
+        if (!dbthoughtData) {
+          res.status(404).json({ message: 'No thought found with this id!' });
           return;
         }
-        res.json(dbuserData);
+        res.json(dbthoughtData);
       })
       .catch(err => res.json(err));
   },
   //remove reaction from thought
-  // removeReaction({ params }, res) {
-    
-  //   Thought.findOneAndUpdate(
-  //     { _id: params.thougtId },
-  //     { $pull: { reactions: params.reactionId } } ,
-  //     { new: true }
-  //   )
-  //     .then(dbThoughtData => res.json(dbThoughtData))
-  //     .catch(err => res.json(err));
-  // }
   removeReaction({params}, res) {
     console.log(params);
     Thought.findOneAndUpdate({_id: params.thoughtId}, {$pull: {reactions: {reactionId: params.reactionId}}}, {new : true})
