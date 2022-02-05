@@ -10,10 +10,10 @@ router.route('/:userId/:thoughtId').delete(removeThought).put(updateThpught).get
 router.route('/').get(getAllThoughts);
 
 //
-router.route('/:userId/:thoughtId').post(addReaction);
+router.route('/:thoughtId/reactions').post(addReaction);
 
 //api/users/:thoughtId/:reactionId
-router.route('/:thoughtId/:reactionId').put(removeReaction);
+router.route('/:thoughtId/reactions/:reactionId').put(removeReaction);
 
 
 
